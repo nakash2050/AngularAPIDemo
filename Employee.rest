@@ -1,0 +1,31 @@
+@url = http://localhost:5000/api/employee
+@employeeId = 6
+
+### Get All Employees
+GET {{url}}
+
+### Get By Employee ID
+GET {{url}}/{{employeeId}}
+
+### Add new Employee
+POST {{url}}
+Content-Type: application/json
+
+{
+    "firstName": "Deepak",
+    "lastName": "Khatri",
+    "designation": "Developer"
+}
+
+### Update Employee
+PUT {{url}}/{{employeeId}}
+Content-Type: application/json
+
+{
+    "firstName": "Nakash Updated",
+    "lastName": "Sheikh",
+    "designation": "Architect"
+}
+
+### Delete Employee
+DELETE {{url}}/{{employeeId}}
