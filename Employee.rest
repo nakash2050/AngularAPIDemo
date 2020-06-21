@@ -12,8 +12,8 @@ POST {{url}}
 Content-Type: application/json
 
 {
-    "firstName": "Deepak",
-    "lastName": "Khatri",
+    "firstName": "Nakash",
+    "lastName": "Sheikh",
     "designation": "Developer"
 }
 
@@ -29,3 +29,9 @@ Content-Type: application/json
 
 ### Delete Employee
 DELETE {{url}}/{{employeeId}}
+
+### Delete Employees
+DELETE {{url}}
+Content-Type: application/json
+
+[18]

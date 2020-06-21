@@ -38,7 +38,7 @@ namespace AngularDemoAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<Employee>> Put(int id, [FromBody]Employee employee)
+        public async Task<ActionResult<Employee>> Put(int id, [FromBody] Employee employee)
         {
             var result = await _repository.UpdateEmployee(id, employee);
             return result;
@@ -48,6 +48,13 @@ namespace AngularDemoAPI.Controllers
         public async Task<ActionResult<bool>> Delete(int id)
         {
             var result = await _repository.DeleteEmployee(id);
+            return result;
+        }
+
+        [HttpDelete]
+        public async Task<ActionResult<bool>> Delete([FromBody] int[] ids)
+        {
+            var result = await _repository.DeleteEmployees(ids);
             return result;
         }
     }

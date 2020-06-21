@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AngularDemoAPI.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +28,19 @@ namespace AngularDemoAPI.Repository
             if (employeeInDb != null)
             {
                 _context.Employees.Remove(employeeInDb);
+                return await _context.SaveChangesAsync() > 0;
+            }
+
+            return false;
+        }
+
+        public async Task<bool> DeleteEmployees(int[] employeeIds)
+        {
+            var employeesInDb = await _context.Employees.Where(emp => employeeIds.Contains(emp.Id)).ToListAsync();
+
+            if(employeesInDb != null)
+            {
+                _context.Employees.RemoveRange(employeesInDb);
                 return await _context.SaveChangesAsync() > 0;
             }
 

@@ -1,1 +1,32 @@
-<p>view-employees works!</p>
+<div class="mt-5">
+    <div *ngIf="employees !== null && employees?.length > 0; else tempNoEmployeesFound">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Designation</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let employee of employees">
+                    <td>{{employee.id}}</td>
+                    <td>{{employee.firstName}}</td>
+                    <td>{{employee.lastName}}</td>
+                    <td>{{employee.designation}}</td>
+                    <td>
+                        <button class="btn btn-sm btn-danger" (click)="deleteEmployee(employee.id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<ng-template #tempNoEmployeesFound>
+    <div class="alert alert-info">
+        No Employees found!
+    </div>
+</ng-template>

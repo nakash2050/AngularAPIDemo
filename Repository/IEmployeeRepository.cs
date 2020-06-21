@@ -11,5 +11,6 @@ namespace AngularDemoAPI.Repository
         Task<List<Employee>> GetAllEmployees();
         Task<Employee> UpdateEmployee(int employeeId, Employee employee);
         Task<bool> DeleteEmployee(int employeeId);
+        Task<bool> DeleteEmployees(int[] employeeIds);
     }
 }
