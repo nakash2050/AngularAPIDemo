@@ -10,6 +10,18 @@ import { EmployeeService } from "src/app/_services/employee.service";
 export class AddEmployeeComponent implements OnInit {
   isEmployeeAdded: boolean = false;
 
+  designations = [
+    { name: 'Developer', value: 'Developer' },
+    { name: 'Tester', value: 'Tester' },
+    { name: 'Manager', value: 'Manager' }
+  ];
+
+  orderForm = {
+    firstName: null,
+    lastName: null,
+    designation: null
+  }
+
   constructor(private employeeService: EmployeeService) {}
 
   ngOnInit() {}

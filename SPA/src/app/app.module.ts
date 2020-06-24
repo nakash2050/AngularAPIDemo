@@ -11,6 +11,7 @@ import { AddEmployeeComponent } from './_components/add-employee/add-employee.co
 import { UpdateEmployeeComponent } from './_components/update-employee/update-employee.component';
 import { ViewEmployeesComponent } from './_components/view-employees/view-employees.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
