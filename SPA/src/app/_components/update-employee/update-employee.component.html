@@ -1,1 +1,50 @@
-<p>update-employee works!</p>
+<div>
+    <div class="col-md-6 mt-3">
+        <div class="card border-dark">
+            <form [formGroup]="updateForm" (change)="onChange(updateForm)" (ngSubmit)="updateEmployee(updateForm)">
+                <div class="card-header bg-primary text-white">
+                    <b>Update Employee</b>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">Please update the employee details</div>
+                    <div class="form-group">
+                        <label for="firstName" class="control-label">First Name</label>
+                        <input type="text" class="form-control" name="firstName" formControlName="firstName"
+                            [class.is-invalid]="updateForm.get('firstName').touched && updateForm.get('firstName').invalid">
+                        <span class="invalid-feedback"
+                            *ngIf="updateForm.get('firstName').touched && updateForm.get('firstName').errors?.required">First
+                            Name is required</span>
+                        <span class="invalid-feedback"
+                            *ngIf="updateForm.get('firstName').touched && updateForm.get('firstName').errors?.minlength">First
+                            Name should have a
+                            minimum length of {{updateForm.get('firstName').errors?.minlength.requiredLength}}</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName" class="control-label">Last Name</label>
+                        <input type="text" class="form-control" name="lastName" formControlName="lastName"
+                            [class.is-invalid]="updateForm.get('lastName').touched && updateForm.get('lastName').invalid">
+                        <span class="invalid-feedback"
+                            *ngIf="updateForm.get('lastName').touched && updateForm.get('lastName').errors?.alphabetsOnly">{{updateForm.get('lastName').errors?.alphabetsOnly.message}}</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="designation">Designation</label>
+                        <select name="designation" id="designation" class="form-control" formControlName="designation">
+                            <option [ngValue]="null">select</option>
+                            <option *ngFor="let item of designations" [value]="item.value">{{item.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-success btn-md" [disabled]="updateForm.invalid">Submit</button>
+                    <button type="reset" class="btn btn-secondary btn-md ml-2" (click)="navigateBack()">Back</button>
+                </div>
+            </form>
+
+            <div class="alert alert-primary m-2" *ngIf="isEmployeeAdded">
+                Employee Added Successfully!
+            </div>
+        </div>
+    </div>
+</div>
+
+{{updateForm.value | json}}

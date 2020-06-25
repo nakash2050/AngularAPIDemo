@@ -11,7 +11,10 @@ export class EmployeeService {
   serviceUrl: string = environment.baseApiUrl + 'employee';
 
   constructor(private httpClient: HttpClient) { 
+  }
 
+  getEmployee(id: string): Observable<IEmployee> {
+    return this.httpClient.get<IEmployee>(this.serviceUrl + '/' + id);
   }
 
   addEmployee(request: any): Observable<boolean> {
@@ -24,5 +27,9 @@ export class EmployeeService {
 
   deleteEmployee(employeeId): Observable<boolean> {
     return this.httpClient.delete<boolean>(this.serviceUrl + '/' + employeeId);
+  }
+
+  updateEmployee(employeeId: string, request: IEmployee): Observable<boolean> {
+    return this.httpClient.put<boolean>(this.serviceUrl + '/' + employeeId, request);
   }
 }
