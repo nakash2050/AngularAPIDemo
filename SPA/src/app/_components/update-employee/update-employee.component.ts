@@ -9,6 +9,7 @@ import {
   ValidationErrors,
   AbstractControl,
   ValidatorFn,
+  FormArray,
 } from "@angular/forms";
 import { IEmployee } from "src/app/_models/employee.model";
 
@@ -50,6 +51,7 @@ export class UpdateEmployeeComponent implements OnInit {
       firstName: [null, [Validators.required, Validators.minLength(3)]],
       lastName: [null, [this.capitalsOnly(/[A-Z]+$/)]],
       designation: [null],
+      addresses: this.fb.array([this.createAddressItem()])
     });
   }
 
@@ -57,8 +59,26 @@ export class UpdateEmployeeComponent implements OnInit {
     this.router.navigate(["view-employees"]);
   }
 
+  createAddressItem(): FormGroup {
+    return this.fb.group({
+      street: null,
+      city: null,
+      state: [null, this.capitalsOnly(/[A-Z]+$/)],
+      zip: null
+    })
+  }
+
   onChange(form): void {
     console.log(form);
+  }
+
+  get Addresses(): FormArray {
+    return <FormArray>this.updateForm.get('addresses');
+  }
+
+  addNewAddress(): void {
+    const addressArray = <FormArray>this.updateForm.get('addresses');
+    addressArray.push(this.createAddressItem());
   }
 
   updateEmployee(updateForm: FormGroup): void {
@@ -82,5 +102,13 @@ export class UpdateEmployeeComponent implements OnInit {
           }
         : null;
     };
+  }
+
+  addAddressItem(): void {
+    this.Addresses.push(this.createAddressItem());
+  }
+
+  deleteAddressItem(index: number): void {
+    this.Addresses.removeAt(index);
   }
 }
