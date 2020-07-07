@@ -17,8 +17,8 @@ export class EmployeeService {
     return this.httpClient.get<IEmployee>(this.serviceUrl + '/' + id);
   }
 
-  addEmployee(request: any): Observable<boolean> {
-    return this.httpClient.post<boolean>(this.serviceUrl, request);
+  addEmployee(request: any): Observable<IEmployee> {
+    return this.httpClient.post<IEmployee>(this.serviceUrl, request);
   }
 
   getAllEmployees(): Observable<IEmployee[]> {

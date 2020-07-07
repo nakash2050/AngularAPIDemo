@@ -63,7 +63,7 @@ export class UpdateEmployeeComponent implements OnInit {
     return this.fb.group({
       street: null,
       city: null,
-      state: [null, this.capitalsOnly(/[A-Z]+$/)],
+      state: [null],
       zip: null
     })
   }

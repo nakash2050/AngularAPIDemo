@@ -10,6 +10,8 @@ import { AppComponent } from './app.component';
 import { AddEmployeeComponent } from './_components/add-employee/add-employee.component';
 import { UpdateEmployeeComponent } from './_components/update-employee/update-employee.component';
 import { ViewEmployeesComponent } from './_components/view-employees/view-employees.component';
+import { UppercaseDirective } from './_common/directives/uppercase.directive';
+import { DisplayEmployeeComponent } from './_components/display-employee/display-employee.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { ViewEmployeesComponent } from './_components/view-employees/view-employ
     AppComponent,
     AddEmployeeComponent,
     UpdateEmployeeComponent,
-    ViewEmployeesComponent
+    ViewEmployeesComponent,
+    UppercaseDirective,
+    DisplayEmployeeComponent
   ],
   imports: [
     BrowserModule,

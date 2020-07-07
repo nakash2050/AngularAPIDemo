@@ -1,4 +1,4 @@
-<div>
+<div class="row">
     <div class="col-md-6 mt-3">
         <div class="card border-dark">
             <form #employeeDetails="ngForm" (ngSubmit)="addEmployee(employeeDetails)">
@@ -11,7 +11,7 @@
                         <label for="firstName" class="control-label">First Name</label>
                         <input type="text" class="form-control"
                             [class.is-invalid]="refFirstName.touched && refFirstName.invalid" name="firstName" ngModel
-                            #refFirstName="ngModel" [(ngModel)]="orderForm.firstName" required minlength="3">
+                            uppercase #refFirstName="ngModel" [(ngModel)]="orderForm.firstName" required minlength="3">
                         <span class="invalid-feedback"
                             *ngIf="refFirstName.touched && refFirstName.errors?.required">First Name is required</span>
                         <span class="invalid-feedback"
@@ -38,10 +38,13 @@
                 </div>
             </form>
 
-            <div class="alert alert-primary m-2" *ngIf="isEmployeeAdded">
+            <div class="alert alert-primary m-2" *ngIf="employee">
                 Employee Added Successfully!
             </div>
         </div>
+    </div>
+    <div class="col-md-6 mt-3">
+        <app-display-employee [employee]=employee (closeDisplayForm)=closeForm($event)></app-display-employee>
     </div>
 </div>
 

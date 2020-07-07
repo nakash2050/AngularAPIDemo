@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { EmployeeService } from "src/app/_services/employee.service";
+import { IEmployee } from "src/app/_models/employee.model";
 
 @Component({
   selector: "app-add-employee",
@@ -8,19 +9,19 @@ import { EmployeeService } from "src/app/_services/employee.service";
   styleUrls: ["./add-employee.component.css"],
 })
 export class AddEmployeeComponent implements OnInit {
-  isEmployeeAdded: boolean = false;
+  employee: IEmployee = null;
 
   designations = [
-    { name: 'Developer', value: 'Developer' },
-    { name: 'Tester', value: 'Tester' },
-    { name: 'Manager', value: 'Manager' }
+    { name: "Developer", value: "Developer" },
+    { name: "Tester", value: "Tester" },
+    { name: "Manager", value: "Manager" },
   ];
 
   orderForm = {
     firstName: null,
     lastName: null,
-    designation: null
-  }
+    designation: null,
+  };
 
   constructor(private employeeService: EmployeeService) {}
 
@@ -31,7 +32,7 @@ export class AddEmployeeComponent implements OnInit {
       .addEmployee(employeeDetails.value)
       .subscribe((response) => {
         if (response) {
-          this.isEmployeeAdded = true;
+          this.employee = response;
           employeeDetails.reset();
         }
       });
@@ -39,5 +40,12 @@ export class AddEmployeeComponent implements OnInit {
 
   onChange(formElement): void {
     console.log(formElement);
+  }
+
+  closeForm(isClose: boolean): void {
+    console.log(isClose);
+    if (isClose) {
+      this.employee = null;
+    }
   }
 }
