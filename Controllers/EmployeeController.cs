@@ -31,7 +31,7 @@ namespace AngularDemoAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<bool>> Post(Employee employee)
+        public async Task<ActionResult<Employee>> Post(Employee employee)
         {
             var result = await _repository.AddEmployee(employee);
             return result;

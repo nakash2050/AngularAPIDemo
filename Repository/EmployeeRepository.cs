@@ -15,10 +15,15 @@ namespace AngularDemoAPI.Repository
             _context = context;
         }
 
-        public async Task<bool> AddEmployee(Employee employee)
+        public async Task<Employee> AddEmployee(Employee employee)
         {
             _context.Employees.Add(employee);
-            return await _context.SaveChangesAsync() > 0;
+            if (await _context.SaveChangesAsync() > 0)
+            {
+                return employee;
+            }
+
+            return null;
         }
 
         public async Task<bool> DeleteEmployee(int employeeId)
@@ -38,7 +43,7 @@ namespace AngularDemoAPI.Repository
         {
             var employeesInDb = await _context.Employees.Where(emp => employeeIds.Contains(emp.Id)).ToListAsync();
 
-            if(employeesInDb != null)
+            if (employeesInDb != null)
             {
                 _context.Employees.RemoveRange(employeesInDb);
                 return await _context.SaveChangesAsync() > 0;

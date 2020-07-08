@@ -40,7 +40,7 @@ namespace AngularDemoAPI
 
             services.AddDbContext<DataContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
             });
 
             services.AddTransient<IEmployeeRepository, EmployeeRepository>();

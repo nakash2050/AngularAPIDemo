@@ -1,5 +1,5 @@
 @url = http://localhost:5000/api/employee
-@employeeId = 6
+@employeeId = 5
 
 ### Get All Employees
 GET {{url}}
@@ -12,9 +12,9 @@ POST {{url}}
 Content-Type: application/json
 
 {
-    "firstName": "Nakash",
-    "lastName": "Sheikh",
-    "designation": "Developer"
+    "firstName": "Manjesh",
+    "lastName": "HS",
+    "designation": "Business"
 }
 
 ### Update Employee
